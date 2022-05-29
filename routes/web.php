@@ -13,6 +13,9 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+// $router->get('/', function () use ($router) {
+//     return $router->app->version();
+// });
+
+$router->get('/', 'UserTestBulkController@index');
+$router->post('/form', 'UserTestBulkController@store');

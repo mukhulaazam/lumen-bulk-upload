@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\UserTestBulk;
 use Illuminate\Http\Request;
+use App\Imports\bulkUploadImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class UserTestBulkController extends Controller
 {
@@ -14,7 +16,7 @@ class UserTestBulkController extends Controller
      */
     public function index()
     {
-        //
+        return view('index');
     }
 
     /**
@@ -35,7 +37,17 @@ class UserTestBulkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $testing = 11;
+
+        if ($request->hasFile('file')) {
+            $path = $request->file('file');
+            Excel::import(new bulkUploadImport($testing), request()->file('file'));
+
+            // $data = Excel::import(new bulkUploadImport($request->program_id), $path);
+        }
+        // return response()->json(['success' => 'You have successfully upload file.', 'data' => $request->all()]);
+
+        
     }
 
     /**
